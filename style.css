@@ -10,10 +10,56 @@ body {
   flex-direction: column;
 }
 
+/* Top navigation bar */
+.top-nav {
+  background: linear-gradient(to right, #004b84, #001f4a);
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 20px;
+}
+
+/* Smaller logo in the top-left */
+.nav-logo {
+  width: 70px;
+  height: auto;
+}
+
+/* Horizontal link list */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  text-decoration: underline;
+}
+
+/* Language selector in the top nav */
+.lang-switch {
+  margin-left: auto;
+}
+
+.lang-switch .form-select {
+  width: 120px;
+  font-size: 14px;
+}
+
 /* Header styling */
 header {
   text-align: center;
-  background: linear-gradient(to right, #00aaff, #003d82);
+  background: linear-gradient(to right, #0063a6, #002b5c);
   padding: 30px 20px;
   color: white;
 }
@@ -43,11 +89,12 @@ header img {
 /* Bottom section with the same gradient as the hero */
 .bottom-section {
   text-align: center;
-  background: linear-gradient(to right, #00aaff, #003d82);
+  background: linear-gradient(to right, #0063a6, #002b5c);
   color: white;
   padding: 20px;
   margin: 0;
   margin-top: auto;
+  position: relative;
 }
 
 .bottom-section p {
@@ -55,7 +102,91 @@ header img {
   font-size: 18px;
 }
 
+/* Text-only button style for the footer link */
+.footer-link {
+  color: #ffffff;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* Place copyright text in the bottom-right corner */
+.footer-copyright {
+  position: absolute;
+  right: 16px;
+  bottom: 10px;
+  font-size: 14px;
+}
+
+/* Legal notice section at the very bottom */
+.legal-notice {
+  text-align: left;
+  background-color: #f0f4f8;
+  padding: 20px;
+  font-size: 12px;
+  color: #333;
+}
+
+.legal-notice p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Thin gray line between the form and footer/legal area */
+.footer-divider {
+  border: none;
+  border-top: 1px solid #b5b5b5;
+  margin: 16px 20px;
+}
+
+/* Smoothly show/hide the subscribe form */
+.subscribe-form {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.subscribe-form.is-hidden {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
 @media (max-width: 480px) {
+  /* Stack the top nav for small screens */
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-logo {
+    width: 60px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .lang-switch {
+    margin-left: 0;
+  }
+
+  .lang-switch .form-select {
+    width: 140px;
+  }
+
   header {
     padding: 20px 15px;
   }
@@ -66,7 +197,7 @@ header img {
   }
 
   header p {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   header img {
@@ -76,24 +207,37 @@ header img {
   }
 
   /* Stack timeline cards vertically on small screens */
-  section {
+  .timeline {
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: visible;
+    padding: 15px;
   }
 
-  section > div {
+  .timeline > div {
     width: 100%;
   }
-  p {
-    padding: 20px;
-    font-size: 18px;
+
+  .footer-copyright {
+    position: static;
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .footer-link {
+    font-size: 16px;
+  }
+
+  .legal-notice {
+    padding: 16px;
+    font-size: 11px;
   }
 }
 
 
 /* Timeline section - horizontal scrolling */
-section {
+.timeline {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -103,8 +247,13 @@ section {
   scroll-padding: 20px;
 }
 
+/* Flip horizontal flow when the page is RTL */
+:dir(rtl) .timeline {
+  direction: rtl;
+}
+
 /* Timeline cards */
-section > div {
+.timeline > div {
   flex-shrink: 0;
   width: 280px;
   background-color: #f5f5f5;
@@ -120,7 +269,7 @@ section > div {
 }
 
 /* Small arrow hint at the bottom of each card */
-section > div::after {
+.timeline > div::after {
   content: "";
   position: absolute;
   bottom: 8px;
@@ -141,31 +290,31 @@ section > div::after {
 }
 
 /* Cards expand on hover */
-section > div:hover {
+.timeline > div:hover {
   width: 320px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Hide arrow when card is expanded */
-section > div:hover::after {
+.timeline > div:hover::after {
   opacity: 0;
 }
 
-section > div img {
+.timeline > div img {
   display: none;
 }
 
-section > div:nth-child(1) { background-image: url('img/1.jpg'); }
-section > div:nth-child(2) { background-image: url('img/2.jpg'); }
-section > div:nth-child(3) { background-image: url('img/3.jpg'); }
-section > div:nth-child(4) { background-image: url('img/4.jpg'); }
-section > div:nth-child(5) { background-image: url('img/GHG-image.webp'); }
-section > div:nth-child(6) { background-image: url('img/intel_2030.webp'); }
-section > div:nth-child(7) { background-image: url('img/Net0.webp'); }
-section > div:nth-child(8) { background-image: url('img/renewable_electricity.webp'); }
-section > div:nth-child(9) { background-image: url('img/intelsustainability_summit.jpg');  }
+.timeline > div:nth-child(1) { background-image: url('img/1.jpg'); }
+.timeline > div:nth-child(2) { background-image: url('img/2.jpg'); }
+.timeline > div:nth-child(3) { background-image: url('img/3.jpg'); }
+.timeline > div:nth-child(4) { background-image: url('img/4.jpg'); }
+.timeline > div:nth-child(5) { background-image: url('img/GHG-image.webp'); }
+.timeline > div:nth-child(6) { background-image: url('img/intel_2030.webp'); }
+.timeline > div:nth-child(7) { background-image: url('img/Net0.webp'); }
+.timeline > div:nth-child(8) { background-image: url('img/renewable_electricity.webp'); }
+.timeline > div:nth-child(9) { background-image: url('img/intelsustainability_summit.jpg');  }
 
-section > div h2 {
+.timeline > div h2 {
   text-align: center;
   margin-top: 0;
   color: white;
@@ -174,7 +323,7 @@ section > div h2 {
   margin: 10px 0 15px 0;
 }
 
-section > div h3 {
+.timeline > div h3 {
   text-align: center;
   color: #333;
   font-size: 16px;
@@ -186,12 +335,12 @@ section > div h3 {
 }
 
 /* When not hovering, keep the white box fully rounded */
-section > div:not(:hover) h3 {
+.timeline > div:not(:hover) h3 {
   border-radius: 8px;
 }
 
 /* Hide paragraph text by default */
-section > div p {
+.timeline > div p {
   color: #666;
   font-size: 14px;
   line-height: 1.5;
@@ -207,11 +356,70 @@ section > div p {
 }
 
 /* Show paragraph text on hover */
-section > div:hover p {
+.timeline > div:hover p {
   opacity: 1;
   max-height: 200px;
 }
 p {
-    padding: 20px;
-    font-size: 18px;
+  padding: 20px;
+  font-size: 18px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Simple gray outline for each column in the Bootstrap section */
+.my-4 .row {
+  gap: 16px;
+  justify-content: center;
+}
+
+.my-4 .col-12 {
+  border: 1px solid #ccc;
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+@media (min-width: 576px) {
+  .my-4 .col-12 {
+    flex: 0 0 30%;
+    max-width: 30%;
   }
+}
+
+.my-4 h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-4 p {
+  font-size: 14px;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.my-4 .btn {
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+/* Smoothly show/hide the subscribe form */
+.subscribe-form {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.subscribe-form.is-hidden {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
