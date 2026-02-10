@@ -32,6 +32,7 @@ body {
   gap: 20px;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -46,15 +47,23 @@ body {
   text-decoration: underline;
 }
 
-/* Language selector in the top nav */
-.lang-switch {
+/* RTL/LTR toggle button */
+.dir-toggle {
   margin-left: auto;
+  background: none;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.lang-switch .form-select {
-  width: 120px;
-  font-size: 14px;
+.dir-toggle:hover,
+.dir-toggle:focus {
+  background-color: rgba(255, 255, 255, 0.15);
 }
+
 
 /* Header styling */
 header {
@@ -179,13 +188,10 @@ header img {
     font-size: 14px;
   }
 
-  .lang-switch {
+  .dir-toggle {
     margin-left: 0;
   }
 
-  .lang-switch .form-select {
-    width: 140px;
-  }
 
   header {
     padding: 20px 15px;
